@@ -17,7 +17,8 @@ if (isset($_REQUEST['loginEmail'])) {
             // Deciphering Password
             if (password_verify($_REQUEST['loginPassword'], $request_data['user_password'])) {
                 session_start();
-                $_SESSION['FullName'] = $data['full_name'];
+                $_SESSION['FullName'] = $request_data['full_name'];
+                $_SESSION['UserID'] = $request_data['sellerId'];
                 print('<script>window.location.href = "main.html"</script>');
             } else
                 print('<span class="w3-animate-top w3-btn-block w3-red w3-padding-8 w3-center">Invalid Email/Password</span>');

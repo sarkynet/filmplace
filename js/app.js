@@ -204,7 +204,22 @@ function validateInput(inputArgs) {
 
 var Login = {
     Email: $('#LoginEmail'),
-    Password: $('#LoginPassword')
+    Password: $('#LoginPassword'),
+    loginSession: function(){
+       $.ajax({
+           url: 'config/session.php',
+           type: authenticate.requestType[0],
+           dataType: authenticate.returnType,
+           success: function(asyncRequest){
+               if (asyncRequest.loginStatus == true){
+                   $('.menu-title').html(asyncRequest.fullName)
+                   $('#userID').html(asyncRequest.userID);
+               }
+               else
+                location.href = 'index.html';
+           }
+       })
+    }
 }
 
 var SignUp = {

@@ -8,10 +8,19 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords"
 		content="Fortune Estates Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, SmartPhone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
-	<script
-		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script type="application/x-javascript">
+
+	addEventListener("load", function() { 
+		setTimeout(hideURLbar, 0); 
+		Login.loginSession()
+	}, false); 
+
+		function hideURLbar(){ window.scrollTo(0,1); }
+		
+	</script>
 	<!-- //For-Mobile-Apps-and-Meta-Tags -->
 	<!-- Custom Theme files -->
+	<!-- <link rel="stylesheet" href="css/w3.css" type="text/css"> -->
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" href="css/ken-burns.css" type="text/css" media="all" />
@@ -50,21 +59,18 @@
 		<div class="menu-wrap" id="style-1">
 			<nav class="top-nav">
 				<ul class="icon-list">
-					<li class="menu-title">Fortune Estates</li>
+					<li class="menu-title">FilmLOC</li>
 					<li><a class="active" href="main.html"><i class="glyphicon glyphicon-home"></i> Home </a></li>
-					<li><a href="about.html"><i class="glyphicon glyphicon-info-sign"></i> About </a></li>
-					<li><a href="property.html"><i class="glyphicon glyphicon-briefcase"></i> properties </a></li>
-					<li><a href="agents.html"><i class="glyphicon glyphicon-eye-open"></i> Agents </a></li>
-					<li><a href="gallery.html"><i class="glyphicon glyphicon-picture"></i> Gallery</a></li>
-					<li><a href="#" class="menu"><i class="glyphicon glyphicon-duplicate"></i> pages<span
-								class="glyphicon glyphicon-menu-down"></span></a>
-						<ul class="nav-sub">
+					<li><a href="about.html"><i class="glyphicon glyphicon-upload"></i> Upload </a></li>
+					<li><a href="config/logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout </a></li>
+					
+						<!-- <ul class="nav-sub">
 							<li><a href="#small-dialog" class="sign-in popup-top-anim"><i
 										class="glyphicon glyphicon-user"></i> login</a></li>
 							<li><a href="#small-dialog1" class="sign-in popup-top-anim"><i
 										class="glyphicon glyphicon-edit"></i> Sign Up</a></li>
 							<li><a href="codes.html"><i class="glyphicon glyphicon-list-alt"></i> Short Codes</a></li>
-						</ul>
+						</ul> -->
 						<div class="clearfix"> </div>
 						<script>
 							$("li a.menu").click(function () {
@@ -75,6 +81,7 @@
 						</script>
 					</li>
 					<li><a href="contact.html"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li>
+					<span hidden id="userID"></span>
 				</ul>
 			</nav>
 			<button class="close-button" id="close-button">C</button>
@@ -89,34 +96,29 @@
 				</div>
 				<div class="login">
 					<a href="#small-dialog" class="sign-in popup-top-anim"><span
-							class="glyphicon glyphicon-user"></span></a>
+							class="glyphicon glyphicon-upload"></span></a>
 					<!-- modal -->
 					<div id="small-dialog" class="mfp-hide">
 						<div class="login-modal">
 							<div class="booking-info">
-								<h3><a href="main.html">Fortune Estates</a></h3>
+								<h3><a href="main.html">Upload Location</a></h3>
 							</div>
+							<datalist id="category">
+								<option>Duplex</option>
+								<option>Bungalow</option>
+								<option>2 Bedroom Flat</option>
+								<option>3 Bedroom Flat</option>
+								<option>Estate</option>
+							</datalist>
 							<div class="login-form">
 								<form action="#" method="post">
 									<div class="styled-input">
-										<input type="text" name="Username" required="" />
-										<label>Username</label>
+										<input type="text" list="category" name="Username" required="" />
+										<label>Category</label>
 										<span></span>
 									</div>
-									<div class="styled-input">
-										<input type="password" name="Password" required="">
-										<label>Password</label>
-										<span></span>
-									</div>
-									<div class="wthree-text">
-										<ul>
-											<li>
-												<input type="checkbox" id="brand" value="">
-												<label for="brand"><span></span> Remember me ?</label>
-											</li>
-											<li> <a href="#">Forgot password?</a> </li>
-										</ul>
-										<div class="clear"> </div>
+									<div class="form-control">
+										<input type="file" name="Password" required="">
 									</div>
 									<input type="submit" value="Sign In">
 								</form>
@@ -417,9 +419,16 @@
 						<div class="clearfix"> </div>
 					</div>
 					<div class="footer-text">
-						<p>&copy; 2016 Fortune Estates . All Rights Reserved | Design by <a href="http://w3layouts.com"
-								target="_blank">W3layouts</a></p>
+						<p>&copy; <span year></span> O42 Media, All Rights Reserved | Powered by <span developer></span>
+						</p>
 					</div>
+					<script src="js/jquery.copyrights.js"></script>
+					<script src="js/app.js"></script>
+					<script>
+						$('[year]').copyrights();
+						$('[developer]').developer();
+
+					</script>
 				</div>
 			</div>
 		</div>
