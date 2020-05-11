@@ -20,7 +20,7 @@
 	</script>
 	<!-- //For-Mobile-Apps-and-Meta-Tags -->
 	<!-- Custom Theme files -->
-	<!-- <link rel="stylesheet" href="css/w3.css" type="text/css"> -->
+	<link rel="stylesheet" href="css/w3.css" type="text/css">
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" href="css/ken-burns.css" type="text/css" media="all" />
@@ -61,9 +61,9 @@
 				<ul class="icon-list">
 					<li class="menu-title">FilmLOC</li>
 					<li><a class="active" href="main.html"><i class="glyphicon glyphicon-home"></i> Home </a></li>
-					<li><a href="about.html"><i class="glyphicon glyphicon-upload"></i> Upload </a></li>
+					<li><a href="#small-dialog" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-upload"></i> Upload </a></li>
+					<li><a href="config/logout.php"><i class="glyphicon glyphicon-home"></i> View </a></li>
 					<li><a href="config/logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout </a></li>
-					
 						<!-- <ul class="nav-sub">
 							<li><a href="#small-dialog" class="sign-in popup-top-anim"><i
 										class="glyphicon glyphicon-user"></i> login</a></li>
@@ -117,13 +117,37 @@
 										<label>Category</label>
 										<span></span>
 									</div>
-									<div class="form-control">
-										<input type="file" name="Password" required="">
+									<div class="styled-input">
+										<select class="w3-select" style="border: none; border-bottom: 1px solid #1e9c95; background: transparent;" id="Country">
+											<option value="null" selected disabled>[Please Select Country]</option>
+											<option value="America">America</option>
+											<option value="Germany">Germany</option>
+										</select>
 									</div>
-									<input type="submit" value="Sign In">
+									<div class="styled-input">
+										<input type="text" id="City" required="" />
+										<label>City</label>
+										<span></span>
+									</div>
+									
+									<div class="styled-input">
+										<input type="text" id="Address" required="" />
+										<label>Address</label>
+										<span></span>
+									</div>
+									<div class="styled-input">
+										<textarea style="border: none; border-bottom: 1px solid #1e9c95; background: transparent;" id="Description" class="w3-input" placeholder="Description"></textarea>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon w3-teal">&#8358;</span>
+											<input type="number" class="form-control" placeholder="Cost">
+										<span class="input-group-addon w3-teal">.00</span>
+									</div>
+									<div class="styled-input">
+										<input type="file" name="" id="Picture" class="w3-input">
+									</div>
+									<button type="button" id="UploadPicture" class="w3-btn-block w3-teal w3-margin-top w3-large">Upload</button>
 								</form>
-								<p>Don’t have an account ?<a href="#small-dialog1" class="sign-in popup-top-anim"> Sign
-										Up</a></p>
 							</div>
 						</div>
 					</div>
