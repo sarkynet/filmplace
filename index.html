@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords"
-        content="Fortune Estates Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, SmartPhone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+        content="Film LOC" />
     <script
         type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //For-Mobile-Apps-and-Meta-Tags -->
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/ken-burns.css" type="text/css" media="all" />
     <!-- //Custom Theme files -->
     <!-- js -->
-    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/jquery-3.4.1.js"></script>
     <!-- //js -->
     <!-- pop-up-box -->
     <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
@@ -57,17 +57,16 @@
                     <div class="booking-info w3-padding-16">
                         <h3 class="w3-text-white">Login</h3>
                         <div id="loginStatus"></div>
-
                     </div>
                     <div class="login-form">
                         <form action="#" method="post">
                             <div class="styled-input">
-                                <input type="text" id="Email" validateLogin required />
+                                <input type="text" id="LoginEmail" validateLogin class="w3-text-white" />
                                 <label>Email Address</label>
                                 <span></span>
                             </div>
                             <div class="styled-input">
-                                <input type="password" id="Password" validateLogin required />
+                                <input type="password" id="LoginPassword" validateLogin class="w3-text-white" />
                                 <label>Password</label>
                                 <span></span>
                             </div>
@@ -86,7 +85,7 @@
                                 In</button>
                         </form>
                         <p class="w3-text-white">Don’t have an account ?<a href="#small-dialog1"
-                                class="sign-in popup-top-anim w3-text-green"> Sign Up</a></p>
+                                class="sign-in popup-top-anim w3-text-green"> Register</a></p>
                     </div>
                 </div>
             </div>
@@ -96,29 +95,54 @@
                 <div class="login-modal">
                     <div class="booking-info">
                         <h3><a href="#">Sign-Up Form</a></h3>
+                        <div id="SignUpNotification"></div>
                     </div>
                     <div class="login-form signup-form">
                         <form action="#" method="post">
                             <div class="styled-input">
-                                <input type="text" name="Username" required="" />
-                                <label>Username</label>
+                                <input type="text" id="FullName" validateUser />
+                                <label>Full Name</label>
                                 <span></span>
                             </div>
                             <div class="styled-input">
-                                <input type="text" name="email" required="" />
-                                <label>Email</label>
+                                <input type="text" id="NewEmail" validateUser />
+                                <label>Email Address</label>
                                 <span></span>
                             </div>
                             <div class="styled-input">
-                                <input type="password" name="Password" required="">
+                                <input type="text" id="Telephone" validateUser />
+                                <label>Telephone</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <select class="w3-select" id="NewQuestion">
+                                    <option value="null" disabled selected>Please Select...</option>
+                                    <option value="In which city were you born?">In which city were you born?</option>
+                                    <option value="In which state were you born?">In which state were you born?</option>
+                                    <option value="In which province were you born?">In which province were you born?</option>
+                                    <option value="What is the name of your favourite cousin?">What is the name of your favourite cousin?</option>
+                                    <option value="What is the name of the street where you grew up?">What is the name of the street where you grew up?</option>
+                                    <option value="Who is your childhood hero">Who is your childhood hero</option>
+                                    <option value="In what town or city was your first full time job?">In what town or city was your first full time job?</option>
+                                    <option value="What is the middle name of your oldest child?">What is the middle name of your oldest child?</option>
+                                    <option value="What primary school did you attend?">What primary school did you attend?</option>
+                                </select>
+                            </div>
+                            <div class="styled-input">
+                                <input type="text" id="NewAnswer" validateUser>
+                                <label>Answer</label>
+                                <span></span>
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" id="NewPassword" validateUser>
                                 <label>Password</label>
                                 <span></span>
                             </div>
-                            <div class="wthree-text">
+                            <!-- <div class="wthree-text">
                                 <input type="checkbox" id="brand1" value="">
                                 <label for="brand1"><span></span>I accept the terms of use</label>
-                            </div>
-                            <input type="submit" value="Sign Up">
+                            </div> -->
+                            <button type="button" class="w3-btn-block w3-teal w3-large" id="SignUp">Sign Up </button>
                         </form>
                     </div>
                 </div>
@@ -138,17 +162,18 @@
                                 <label>Email Address</label>
                                 <span></span>
                             </div>
-                            <div class="form-group">
-                                <label>Security Question</label>
+                            <div class="styled-input">
                                 <select class="w3-select" id="SecurityQuestion">
                                     <option value="null" disabled selected>Please Select...</option>
-                                    <option value="">What is your pet name</option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
-                                    <option value=""></option>
+                                    <option value="In which city were you born?">In which city were you born?</option>
+                                    <option value="In which state were you born?">In which state were you born?</option>
+                                    <option value="In which province were you born?">In which province were you born?</option>
+                                    <option value="What is the name of your favourite cousin?">What is the name of your favourite cousin?</option>
+                                    <option value="What is the name of the street where you grew up?">What is the name of the street where you grew up?</option>
+                                    <option value="Who is your childhood hero">Who is your childhood hero</option>
+                                    <option value="In what town or city was your first full time job?">In what town or city was your first full time job?</option>
+                                    <option value="What is the middle name of your oldest child?">What is the middle name of your oldest child?</option>
+                                    <option value="What primary school did you attend?">What primary school did you attend?</option>
                                 </select>
                             </div>
                             <div class="styled-input">
@@ -163,7 +188,7 @@
             </div>
             <!-- //modal-three -->
             <div id="small-dialog3" class="mfp-hide">
-                <div class="login-modal">
+                <div class="login-modal" id="Reset">
                     <div class="booking-info">
                         <h3><a href="#">Reset Password</a></h3>
                         <div id="PasswordResetStatus"></div>
@@ -171,17 +196,17 @@
                     <div class="login-form signup-form">
                         <form action="#" method="post">
                             <div class="styled-input">
-                                <input type="password" id="Password" validatePassword />
+                                <input type="password" id="ResetPassword" validatePassword />
                                 <label>New Password</label>
                                 <span></span>
                             </div>
                             <div class="styled-input">
-                                <input type="password" id="ConfirmNewPassword" validatePassword />
+                                <input type="password" id="ConfirmResetPassword" validatePassword />
                                 <label>Confirm Password</label>
                                 <span></span>
                             </div>
-                            <button type="button" id="ResetPassword" class="w3-btn-block w3-teal w3-padding-8 w3-large">Reset Password</button>
-                            <input hidden id="VerifiedEmail" />
+                            <button type="button" id="PasswordReset" class="w3-btn-block w3-teal w3-padding-8 w3-large">Reset Password</button>
+                            <!-- <input hidden id="VerifiedEmail" /> -->
                             <input hidden id="VerifiedUserId" />
                         </form>
                     </div>
@@ -192,7 +217,7 @@
     </div>
     <hr />
     <div class="footer-text">
-        <p>&copy; <span year></span> 042 Media, All Rights Reserved | Powered by <span developer></span></p>
+        <p>&copy; <span year></span> O42 Media, All Rights Reserved | Powered by <span developer></span></p>
     </div>
     <script src="js/jquery.copyrights.js"></script>
     <script src="js/app.js"></script>
