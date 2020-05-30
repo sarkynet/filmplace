@@ -19,6 +19,7 @@ if (isset($_REQUEST['loginEmail'])) {
                 session_start();
                 $_SESSION['FullName'] = $request_data['full_name'];
                 $_SESSION['UserID'] = $request_data['sellerId'];
+                $_SESSION['Telephone'] = $request_data['tel'];
                 print('<script>window.location.href = "main.html"</script>');
             } else
                 print('<span class="w3-animate-top w3-btn-block w3-red w3-padding-8 w3-center">Invalid Email/Password</span>');

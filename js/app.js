@@ -176,6 +176,49 @@ $('#SignUp').click(function () {
 })
 
 /**
+ * File Upload algorithm
+ */
+
+$('#UploadPicture').click(function () {
+    validateInput('validateUpload');
+
+    if (authenticate.flag == true) {
+        let formData = new FormData(form);
+        $.ajax({
+            url: 'config/upload.php',
+            type: authenticate.requestType[0],
+            contentType: false,
+            cache: false,
+            processData: false,
+            data: formData,
+            beforeSend: function () {
+                $('#UploadPicture').html('<img src="./images/dual-ring-loader.gif" width="32" />');
+                $('#UploadPicture').html('Upload');
+            },
+
+            success: function (asyncRequest) {
+                Upload.Address.val(null);
+                Upload.Category.val(null)
+                Upload.Country.val('null')
+                Upload.Owner.val(null)
+                Upload.City.val(null)
+                Upload.Cost.val(null)
+                Upload.Description.val(null);
+                $("#UploadStatus").html(asyncRequest);
+
+                setTimeout(function () {
+                    $('#UploadStatus').fadeOut(1000);
+                    $('#UploadStatus').val(null).show();
+                    location.href = 'main.html';
+                }, 5000)
+
+            }
+        });
+    }
+})
+
+
+/**
  * 
  * @param { This function validates form controls when called.
   Each group of controls should have a unique username.
@@ -205,20 +248,30 @@ function validateInput(inputArgs) {
 var Login = {
     Email: $('#LoginEmail'),
     Password: $('#LoginPassword'),
-    loginSession: function(){
-       $.ajax({
-           url: 'config/session.php',
-           type: authenticate.requestType[0],
-           dataType: authenticate.returnType,
-           success: function(asyncRequest){
-               if (asyncRequest.loginStatus == true){
-                   $('.menu-title').html(asyncRequest.fullName)
-                   $('#userID').html(asyncRequest.userID);
-               }
-               else
-                location.href = 'index.html';
-           }
-       })
+    loginSession: function () {
+        $.ajax({
+            url: 'config/session.php',
+            type: authenticate.requestType[0],
+            dataType: authenticate.returnType,
+            success: function (asyncRequest) {
+                if (asyncRequest.loginStatus == true) {
+                    $('.menu-title').html(asyncRequest.fullName)
+                    $('#userID').html(asyncRequest.userID);
+                }
+                else
+                    location.href = 'index.html';
+            }
+        })
+    },
+    latestUploads: function () {
+        $.ajax({
+            url: 'config/init.php',
+            type: authenticate.requestType[0],
+            data: {login: true},
+            success: function (asyncRequest) {
+                $('#previewUploads').html(asyncRequest);
+            }
+        })
     }
 }
 
@@ -255,4 +308,16 @@ var authenticate = {
     ChangePassword: $('#Reset'), //Change Password markup
     verifiedUserId: $('#VerifiedUserId'),
     confirmNewPassword: $('#ConfirmResetPassword'),
+}
+
+var Upload = {
+    Address: $('#Address'),
+    Category: $('#Category'),
+    Country: $('#Country'),
+    City: $('#City'),
+    Cost: $('#Cost'),
+    Preview: $('#ImagePreview'),
+    Description: $('#Description'),
+    Owner: $('.menu-title'),
+    avialablity: 1
 }
