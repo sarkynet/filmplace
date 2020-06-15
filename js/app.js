@@ -217,6 +217,24 @@ $('#UploadPicture').click(function () {
     }
 })
 
+// Search algorithm
+
+$('#Search').click(function () {
+    validateInput('validateKeyword');
+
+    if (authenticate.flag == true)
+        Search.match();
+    // location.href = 'search.html';
+})
+
+// Advance search
+
+$('#advanceSearch').click(function () {
+    validateInput('validateAdvance');
+    if (authenticate.flag == true)
+        Search.advance();
+})
+
 
 /**
  * 
@@ -265,9 +283,9 @@ var Login = {
     },
     latestUploads: function () {
         $.ajax({
-            url: 'config/init.php',
+            url: 'config/search.php',
             type: authenticate.requestType[0],
-            data: {login: true},
+            data: { login: true },
             success: function (asyncRequest) {
                 $('#previewUploads').html(asyncRequest);
             }
@@ -320,4 +338,46 @@ var Upload = {
     Description: $('#Description'),
     Owner: $('.menu-title'),
     avialablity: 1
+}
+
+var Search = {
+    keyword: $('#keyword'),
+    city: $('#city'),
+    priceRange: {
+        from: $('#from'),
+        to: $('#to')
+    },
+    country: $('#Country'),
+    category: $('#category'),
+    match: function () {
+        $.ajax({
+            url: 'config/search.php',
+            type: authenticate.requestType[0],
+            data: { keyword: Search.keyword.val() },
+            success: function (asyncRequest) {
+                $('#previewUploads').html(asyncRequest);
+                $('#searchTitle').html('Search Result');
+            }
+        })
+    },
+    advance: function () {
+        $.ajax({
+            url: 'config/search.php',
+            type: authenticate.requestType[0],
+            dataType: authenticate.returnType,
+            data: {
+                city: Search.city.val(),
+                category: Search.category.val(),
+                country: Search.country.val(),
+                priceStart: Search.priceRange.from.val(),
+                priceEnd: Search.priceRange.to.val(),
+            },
+            success: function (asyncRequest) {
+                $('#previewUploads').html(asyncRequest);
+                $('#searchTitle').html('Search Result');
+                // $('#resultCount').html(asyncRequest.count);
+            }
+        })
+    }
+
 }

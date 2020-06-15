@@ -2,15 +2,14 @@
 <html>
 
 <head>
-	<title>Fortune Estates a Mobile App Flat Bootstrap Responsive Website Template | Main :: W3layouts</title>
+	<title>Film-LOC</title>
 	<!-- For-Mobile-Apps-and-Meta-Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords"
-		content="Fortune Estates Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, SmartPhone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+	<meta name="keywords" content="" />
 	<script type="application/x-javascript">
 
-	addEventListener("load", function() { 
+	addEventListener("load", function() {
 		setTimeout(hideURLbar, 0); 
 		Login.loginSession();
 		Login.latestUploads();
@@ -113,6 +112,8 @@
 								<option>Bungalow</option>
 								<option>2 Bedroom Flat</option>
 								<option>3 Bedroom Flat</option>
+								<option>Single Self Container</option>
+								<option>Single Room</option>
 								<option>Estate</option>
 							</datalist>
 							<div class="login-form">
@@ -405,12 +406,29 @@
 											name="Description" class="w3-input" placeholder="Description"
 											validateUpload></textarea>
 									</div>
+									<small>Price per day</small>
 									<div class="input-group">
-										<span class="input-group-addon w3-teal">&#8358;</span>
-										<input type="number" class="form-control" name="Cost" validateUpload
-											placeholder="Cost">
-										<span class="input-group-addon w3-teal">.00</span>
-									</div>
+										<div class="input-group-btn">
+											<input type="text" name="Currency" id="Currency" hidden>
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NGN <span class="caret"></span></button>
+											<ul class="dropdown-menu">
+												<li><a href="#">USD</a></li>
+												<li><a href="#">EUR </a></li>
+												<li><a href="#">NGN</a></li>
+												<li><a href="#">GBP</a></li>
+												<li><a href="#">AUD</a></li>
+												<li><a href="#">YEN</a></li>
+											</ul>
+											<script>
+												$('.dropdown-menu a').click(function(){
+													$('[data-toggle="dropdown"]').html($(this).html());
+													$('#Currency').val($(this).html())
+												})
+											</script>
+										</div><!-- /btn-group -->
+										<input type="text" name="Cost" class="form w3-input" aria-label="...">
+									</div><!-- /input-group -->
+
 									<div class="styled-input">
 										<input type="file" name="image" validateUpload id="File" class="w3-input"
 											accept="image/*" />
@@ -522,8 +540,8 @@
 									<div class="tabcontent-grids">
 										<h4>Find Your Movie Location</h4>
 										<form action="#" method="post">
-											<input type="search" name="Search" placeholder="Your City..." required="">
-											<button type="submit" class="btn btn-default" aria-label="Left Align">
+											<input type="search" id="keyword" placeholder="Search: Your City, Country, Category..." validateKeyword />
+											<button type="button" id="Search" class="btn btn-default" aria-label="Left Align">
 												<span class="glyphicon glyphicon-search"></span>
 											</button>
 										</form>
@@ -539,7 +557,7 @@
 									</div>
 									<div class="login-form">
 										<form action="#" method="post">
-											<select class="form-control" name="Country">
+											<select class="form-control" id="Country">
 												<option value="null">[Select Country]</option>
 												<option value="Afghanistan">Afghanistan</option>
 												<option value="Aland Islands">Aland Islands</option>
@@ -814,18 +832,17 @@
 												<option value="Zambia">Zambia</option>
 												<option value="Zimbabwe">Zimbabwe</option>
 											</select>
-											<input type="text" name="city name" placeholder="City" required="">
-											<input type="number" name="rooms" placeholder="Category" min="1"
-												required="">
+											<input type="text" id="city" placeholder="City" validateAdvance />
+											<input type="text" id="category" placeholder="Category" validateAdvance />
 											<div class="price">
 												<span class="glyphicon" aria-hidden="true">&#8358</span>
-												<input type="text" placeholder="From" required="">
+												<input type="text" id="from" placeholder="From" />
 											</div>
 											<div class="price price-right">
 												<span class="glyphicon" aria-hidden="true">&#8358</span>
-												<input type="text" placeholder="To" required="">
+												<input type="text" id="to" placeholder="To" />
 											</div>
-											<a href="search.html" class="w3-btn-block w3-teal w3-large">Search</a>
+											<button type="button" id="advanceSearch" class="w3-btn-block w3-teal w3-large">Search</button>
 										</form>
 									</div>
 								</div>
@@ -838,7 +855,7 @@
 				<!-- properties -->
 				<div class="w3agile properties">
 					<div class="properties-top">
-						<h3 class="w3ls-title">Available Locations</h3>
+						<h3 class="w3ls-title" id="searchTitle">latest Uploads</h3>
 						<p class="w3title-text">Searching for a location for your video shoot? We have solved your problem </p>
 					</div>
 					<div class="properties-bottom" id="previewUploads">

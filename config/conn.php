@@ -6,4 +6,4 @@ define("DB", 'film_loc');
 
 $conn = new mysqli(SERVER, USER, PASSWORD, DB);
 if (!$conn)
-    die('Failed to connect to database' . $conn->connect_error);
+    die('Failed to connect to database: NO INTERNET');

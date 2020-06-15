@@ -22,8 +22,8 @@ if (isset($_REQUEST['Category']) || isset($_REQUEST['Description'])) {
             session_start();
 
             // //insert form data in the database
-            $upload_query = "INSERT INTO house (house_cate, house_cost, house_city, house_country, house_description, house_availability, house_address, house_image, house_owner, owner_telephone) 
-            VALUES ('{$_REQUEST["Category"]}', '{$_REQUEST["Cost"]}', '{$_REQUEST["City"]}', '{$_REQUEST["Country"]}', '{$_REQUEST["Description"]}',1, '{$_REQUEST["Address"]}', '{$path}', '{$_SESSION["FullName"]}', '{$_SESSION["Telephone"]}')";
+            $upload_query = "INSERT INTO house (house_cate, house_currency, house_cost, house_city, house_country, house_description, house_availability, house_address, house_image, house_owner, owner_telephone) 
+            VALUES ('{$_REQUEST["Category"]}', '{$_REQUEST["Currency"]}', '{$_REQUEST["Cost"]}', '{$_REQUEST["City"]}', '{$_REQUEST["Country"]}', '{$_REQUEST["Description"]}',1, '{$_REQUEST["Address"]}', '{$path}', '{$_SESSION["FullName"]}', '{$_SESSION["Telephone"]}')";
             $query_result = $conn->query($upload_query);
 
             if ($query_result == TRUE)
