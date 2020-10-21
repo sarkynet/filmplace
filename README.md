@@ -1,5 +1,5 @@
-# filmloc
-FilmLOC mobile application is an application that helps producers and movie directors to easily locate a building or settings for their movie scene shooting.
+# Film Place
+Film Place mobile application is an application that helps producers and movie directors to easily locate a building or settings for their movie scene shooting.
 
 # User stories
 - As a registered user, I want to be able to upload my house 

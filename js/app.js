@@ -46,7 +46,7 @@ $('#VerifyAccount').click(function () {
         setTimeout(function () {
             $.ajax({
                 url: 'config/auth.php',
-                dataType: authenticate.returnType,
+                dataType: authenticate.returnType.JSONData,
                 type: authenticate.requestType[0],
                 data: {
                     verifiedEmail: authenticate.Email.val(),
@@ -91,7 +91,7 @@ $('#PasswordReset').click(function () {
             setTimeout(function () {
                 $.ajax({
                     url: 'config/auth.php',
-                    dataType: authenticate.returnType,
+                    dataType: authenticate.returnType.JSONData,
                     type: authenticate.requestType[0],
                     data: {
                         password: authenticate.Password.val(),
@@ -143,7 +143,7 @@ $('#SignUp').click(function () {
             $.ajax({
                 url: 'config/auth.php',
                 type: authenticate.requestType[0],
-                // dataType: authenticate.returnType,
+                // dataType: authenticate.returnType.JSONData,
                 data: {
                     fullName: SignUp.fullName.val(),
                     newUserEmail: SignUp.Email.val(),
@@ -215,6 +215,7 @@ $('#UploadPicture').click(function () {
             }
         });
     }
+    authenticate.flag = false;
 })
 
 // Search algorithm
@@ -224,15 +225,19 @@ $('#Search').click(function () {
 
     if (authenticate.flag == true)
         Search.match();
-    // location.href = 'search.html';
+    else
+        return false;
 })
 
 // Advance search
 
 $('#advanceSearch').click(function () {
     validateInput('validateAdvance');
-    if (authenticate.flag == true)
+    if (authenticate.flag == true) {
         Search.advance();
+        authenticate.flag = false;
+    }
+
 })
 
 
@@ -270,7 +275,7 @@ var Login = {
         $.ajax({
             url: 'config/session.php',
             type: authenticate.requestType[0],
-            dataType: authenticate.returnType,
+            dataType: authenticate.returnType.JSONData,
             success: function (asyncRequest) {
                 if (asyncRequest.loginStatus == true) {
                     $('.menu-title').html(asyncRequest.fullName)
@@ -279,17 +284,7 @@ var Login = {
                 else
                     location.href = 'index.html';
             }
-        })
-    },
-    latestUploads: function () {
-        $.ajax({
-            url: 'config/search.php',
-            type: authenticate.requestType[0],
-            data: { login: true },
-            success: function (asyncRequest) {
-                $('#previewUploads').html(asyncRequest);
-            }
-        })
+        });
     }
 }
 
@@ -319,7 +314,9 @@ var authenticate = {
     flag: false,
     Email: $('#Email'),
     Password: $('#ResetPassword'),
-    returnType: 'JSON',
+    returnType: {
+        JSONData: 'JSON',
+    },
     requestType: ['POST', 'GET'],
     Question: $('#SecurityQuestion'),
     Answer: $('#Answer'),
@@ -337,40 +334,42 @@ var Upload = {
     Preview: $('#ImagePreview'),
     Description: $('#Description'),
     Owner: $('.menu-title'),
+    Currency: $('#Currency'),
     avialablity: 1
 }
 
 var Search = {
     keyword: $('#keyword'),
     city: $('#city'),
-    priceRange: {
-        from: $('#from'),
-        to: $('#to')
-    },
     country: $('#Country'),
     category: $('#category'),
     match: function () {
         $.ajax({
             url: 'config/search.php',
             type: authenticate.requestType[0],
+            beforeSend: function () {
+                $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
+            },
             data: { keyword: Search.keyword.val() },
             success: function (asyncRequest) {
                 $('#previewUploads').html(asyncRequest);
                 $('#searchTitle').html('Search Result');
             }
         })
+        authenticate.flag = false;
     },
     advance: function () {
         $.ajax({
             url: 'config/search.php',
             type: authenticate.requestType[0],
-            dataType: authenticate.returnType,
+            dataType: authenticate.returnType.JSONData,
+            beforeSend: function () {
+                $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
+            },
             data: {
                 city: Search.city.val(),
                 category: Search.category.val(),
                 country: Search.country.val(),
-                priceStart: Search.priceRange.from.val(),
-                priceEnd: Search.priceRange.to.val(),
             },
             success: function (asyncRequest) {
                 $('#previewUploads').html(asyncRequest);
@@ -379,5 +378,19 @@ var Search = {
             }
         })
     }
+
+}
+
+var Preview = {
+    latestUploads: function () {
+        $.ajax({
+            url: 'config/search.php',
+            type: authenticate.requestType[0],
+            data: { login: true },
+            success: function (asyncRequest) {
+                $('#previewUploads').html(asyncRequest);
+            }
+        })
+    },
 
 }

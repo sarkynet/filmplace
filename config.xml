@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "com.O42media.filmloc"
+    id          = "com.O42media.Film Place"
     versionCode = "10"
     version     = "1.0.0" >
 
 <!-- versionCode is optional and Android only -->
 
-  <name>FilmLOC</name>
+  <name>Film Place</name>
 
   <description>
-      # filmloc
-FilmLOC mobile application is an application that helps producers and movie directors to easily locate a building or settings for their movie scene shooting.
+      # Film Place
+Film Place mobile application is an application that helps producers and movie directors to easily locate a building or settings for their movie scene shooting.
 
 # User stories
 - As a registered user, I want to be able to upload my house 
@@ -19,7 +19,7 @@ FilmLOC mobile application is an application that helps producers and movie dire
 - As a visitor, I want to be able to search for a house by country, state and category.
   </description>
 
-  <author href="https://filmloc.O42media.com" email="support@filmloc.com">
+  <author href="https://Film Place.O42media.com" email="support@Film Place.com">
       O42 Media
   </author>
 <platform name="ios" />
