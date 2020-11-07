@@ -71,5 +71,5 @@ if (isset($_REQUEST['newUserEmail'])) {
     if ($request_result === TRUE)
         print('<span class="w3-animate-top w3-btn-block w3-green w3-padding-8 w3-center">Registration Successful</span>');
     else
-        print('<span class="w3-animate-top w3-btn-block w3-red w3-padding-8 w3-center">Email already exist</span>');
+        print('<span class="w3-animate-top w3-btn-block w3-red w3-padding-8 w3-center">Email Address or Telephone number is already existing</span>');
 }

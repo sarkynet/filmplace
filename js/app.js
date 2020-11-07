@@ -166,6 +166,7 @@ $('#SignUp').click(function () {
                     setTimeout(function () {
                         $('#SignUpNotification').fadeOut(1000);
                         $('#SignUpNotification').val(null).show();
+                        location.href = 'main.html';
                     }, 5000)
                 }
             })
@@ -231,14 +232,14 @@ $('#Search').click(function () {
 
 // Advance search
 
-$('#advanceSearch').click(function () {
-    validateInput('validateAdvance');
-    if (authenticate.flag == true) {
-        Search.advance();
-        authenticate.flag = false;
-    }
+// $('#advanceSearch').click(function () {
+//     validateInput('validateAdvance');
+//     if (authenticate.flag == true) {
+//         Search.advance();
+//         authenticate.flag = false;
+//     }
 
-})
+// })
 
 
 /**
@@ -382,15 +383,20 @@ var Search = {
 }
 
 var Preview = {
-    latestUploads: function () {
+    latestUploads: () => {
         $.ajax({
             url: 'config/search.php',
             type: authenticate.requestType[0],
             data: { login: true },
-            success: function (asyncRequest) {
-                $('#previewUploads').html(asyncRequest);
-            }
+            success: (asyncRequest) => $('#previewUploads').html(asyncRequest)
         })
     },
-
+    myGallery: () => {
+        $.ajax({
+            url: 'config/gallery.php',
+            type: authenticate.requestType[0],
+            data: { login: true },
+            success: (asyncRequest) => $('#gallery').html(asyncRequest)
+        })
+    }
 }
