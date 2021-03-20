@@ -1,13 +1,13 @@
 
 // Login Asychronous Request
-$('#SignIn').click(function () {
+$('#SignIn').click(() => {
     validateInput('validateLogin') // Form Validation
 
     //Sending asynchronous request
     if (authenticate.flag == true) {
         $('#SignIn').html('<img src="./images/dual-ring-loader.gif" width="32" />');
 
-        setTimeout(function () {
+        setTimeout(() => {
             $.ajax({
                 url: 'config/auth.php',
                 type: authenticate.requestType[0],
@@ -16,12 +16,12 @@ $('#SignIn').click(function () {
                     loginEmail: Login.Email.val(),
                     loginPassword: Login.Password.val(),
                 },
-                success: function (asyncRequest) {
+                success: (asyncRequest) => {
                     Login.Email.val(null);
                     Login.Password.val(null);
                     $('#loginStatus').html(asyncRequest);
                     $('#SignIn').html('Sign In');
-                    setTimeout(function () {
+                    setTimeout(() => {
                         $('#loginStatus').fadeOut(1000);
                     }, 5000);
 
@@ -37,13 +37,13 @@ $('#SignIn').click(function () {
 
 
 // Password Verification Asychronous Request 
-$('#VerifyAccount').click(function () {
+$('#VerifyAccount').click(() => {
     validateInput('validateAccount');
 
     //Sending asynchronous request
     if (authenticate.flag == true) {
         $('#VerifyAccount').html('<img src="./images/dual-ring-loader.gif" width="32" />');
-        setTimeout(function () {
+        setTimeout(() => {
             $.ajax({
                 url: 'config/auth.php',
                 dataType: authenticate.returnType.JSONData,
@@ -53,7 +53,7 @@ $('#VerifyAccount').click(function () {
                     answer: authenticate.Answer.val(),
                     securityQuestion: authenticate.Question.val()
                 },
-                success: function (asyncRequest) {
+                success: (asyncRequest) => {
                     authenticate.Email.val(null);
                     authenticate.Answer.val(null);
                     authenticate.Question.val('null');
@@ -64,7 +64,7 @@ $('#VerifyAccount').click(function () {
                     }
                     else {
                         $('#AccountVerificationStatus').html(asyncRequest.error);
-                        setTimeout(function () {
+                        setTimeout(() => {
                             $('#AccountVerificationStatus').fadeOut(1000);
                         }, 5000);
                         $("#AccountVerificationStatus").val(null).show();
@@ -79,7 +79,7 @@ $('#VerifyAccount').click(function () {
 
 
 // Password Reset Asychronous Request 
-$('#PasswordReset').click(function () {
+$('#PasswordReset').click(() => {
     validateInput('validatePassword');
 
     //Sending asynchronous request
@@ -88,7 +88,7 @@ $('#PasswordReset').click(function () {
 
         if (authenticate.confirmNewPassword.val() === authenticate.Password.val()) {
 
-            setTimeout(function () {
+            setTimeout(() => {
                 $.ajax({
                     url: 'config/auth.php',
                     dataType: authenticate.returnType.JSONData,
@@ -97,14 +97,14 @@ $('#PasswordReset').click(function () {
                         password: authenticate.Password.val(),
                         userId: authenticate.verifiedUserId.val()
                     },
-                    success: function (asyncRequest) {
+                    success:  (asyncRequest)=> {
                         authenticate.Password.val(null);
                         authenticate.confirmNewPassword.val(null);
                         $('#PasswordReset').html('Reset Password');
                         if (asyncRequest.Status == true) {
                             $('#PasswordResetStatus').html(asyncRequest.Message);
                             $('#PasswordReset').html('Redirecting...')
-                            setTimeout(function () {
+                            setTimeout( () => {
                                 $('#PasswordResetStatus').fadeOut(1000);
                                 $('#PasswordResetStatus').val(null).show();
                                 location.href = 'index.html';
@@ -121,7 +121,7 @@ $('#PasswordReset').click(function () {
             authenticate.Password.val(null);
             authenticate.confirmNewPassword.val(null);
             $('#PasswordReset').html('Reset Password');
-            setTimeout(function () {
+            setTimeout( ()=> {
                 $('#PasswordResetStatus').fadeOut(1000);
                 $('#PasswordResetStatus').val(null).show()
             }, 5000)
@@ -133,13 +133,13 @@ $('#PasswordReset').click(function () {
 });
 
 // New User Registration
-$('#SignUp').click(function () {
+$('#SignUp').click( () =>{
     validateInput('validateUser');
     //Sending asynchronous request
     if (authenticate.flag == true) {
         $('#SignUp').html('<img src="./images/dual-ring-loader.gif" width="32" />');
 
-        setTimeout(function () {
+        setTimeout( ()=> {
             $.ajax({
                 url: 'config/auth.php',
                 type: authenticate.requestType[0],
@@ -153,7 +153,7 @@ $('#SignUp').click(function () {
                     password: SignUp.Password.val(),
                     dateOfRegistration: SignUp.getToday()
                 },
-                success: function (asyncRequest) {
+                success:  (asyncRequest) =>{
                     SignUp.fullName.val(null);
                     SignUp.Email.val(null);
                     SignUp.telephone.val(null);
@@ -163,7 +163,7 @@ $('#SignUp').click(function () {
                     $('#SignUp').html('Sign Up');
 
                     $('#SignUpNotification').html(asyncRequest);
-                    setTimeout(function () {
+                    setTimeout( ()=> {
                         $('#SignUpNotification').fadeOut(1000);
                         $('#SignUpNotification').val(null).show();
                         location.href = 'main.html';
@@ -180,7 +180,7 @@ $('#SignUp').click(function () {
  * File Upload algorithm
  */
 
-$('#UploadPicture').click(function () {
+$('#UploadPicture').click( ()=> {
     validateInput('validateUpload');
 
     if (authenticate.flag == true) {
@@ -192,12 +192,12 @@ $('#UploadPicture').click(function () {
             cache: false,
             processData: false,
             data: formData,
-            beforeSend: function () {
+            beforeSend:  () =>{
                 $('#UploadPicture').html('<img src="./images/dual-ring-loader.gif" width="32" />');
                 $('#UploadPicture').html('Upload');
             },
 
-            success: function (asyncRequest) {
+            success:  (asyncRequest) =>{
                 Upload.Address.val(null);
                 Upload.Category.val(null)
                 Upload.Country.val('null')
@@ -207,7 +207,7 @@ $('#UploadPicture').click(function () {
                 Upload.Description.val(null);
                 $("#UploadStatus").html(asyncRequest);
 
-                setTimeout(function () {
+                setTimeout( () =>{
                     $('#UploadStatus').fadeOut(1000);
                     $('#UploadStatus').val(null).show();
                     location.href = 'main.html';
@@ -221,7 +221,7 @@ $('#UploadPicture').click(function () {
 
 // Search algorithm
 
-$('#Search').click(function () {
+$('#Search').click( ()=> {
     validateInput('validateKeyword');
 
     if (authenticate.flag == true)
@@ -272,12 +272,12 @@ function validateInput(inputArgs) {
 var Login = {
     Email: $('#LoginEmail'),
     Password: $('#LoginPassword'),
-    loginSession: function () {
+    loginSession:  () =>{
         $.ajax({
             url: 'config/session.php',
             type: authenticate.requestType[0],
             dataType: authenticate.returnType.JSONData,
-            success: function (asyncRequest) {
+            success:  (asyncRequest)=> {
                 if (asyncRequest.loginStatus == true) {
                     $('.menu-title').html(asyncRequest.fullName)
                     $('#userID').html(asyncRequest.userID);
@@ -299,7 +299,7 @@ var SignUp = {
     /**
      * Get the current date of the client system in YYYY-DD-MM format
      */
-    getToday: function () {
+    getToday:  ()=> {
         // const monthNames = ["January", "February", "March", "April", "May", "June",
         //     "July", "August", "September", "October", "November", "December"];
         let dateObj = new Date();
@@ -344,27 +344,27 @@ var Search = {
     city: $('#city'),
     country: $('#Country'),
     category: $('#category'),
-    match: function () {
+    match:  ()=> {
         $.ajax({
             url: 'config/search.php',
             type: authenticate.requestType[0],
-            beforeSend: function () {
+            beforeSend: () => {
                 $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
             },
             data: { keyword: Search.keyword.val() },
-            success: function (asyncRequest) {
+            success:  (asyncRequest)=> {
                 $('#previewUploads').html(asyncRequest);
                 $('#searchTitle').html('Search Result');
             }
         })
         authenticate.flag = false;
     },
-    advance: function () {
+    advance:  () =>{
         $.ajax({
             url: 'config/search.php',
             type: authenticate.requestType[0],
             dataType: authenticate.returnType.JSONData,
-            beforeSend: function () {
+            beforeSend:  () =>{
                 $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
             },
             data: {
@@ -372,7 +372,7 @@ var Search = {
                 category: Search.category.val(),
                 country: Search.country.val(),
             },
-            success: function (asyncRequest) {
+            success:  (asyncRequest) =>{
                 $('#previewUploads').html(asyncRequest);
                 $('#searchTitle').html('Search Result');
                 // $('#resultCount').html(asyncRequest.count);
