@@ -387,6 +387,9 @@ var Preview = {
         $.ajax({
             url: 'config/search.php',
             type: authenticate.requestType[0],
+            beforeSend:  () =>{
+                $('#previewUploads').html('<img src="images/dual-ring-loader.gif" height="50" />')
+            },
             data: { login: true },
             success: (asyncRequest) => $('#previewUploads').html(asyncRequest)
         })
