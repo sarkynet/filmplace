@@ -203,6 +203,7 @@ $('#UploadPicture').click(() => {
             contentType: false,
             cache: false,
             processData: false,
+            dataType: authenticate.JSON,
             data: formData,
             beforeSend: () => {
                 $('#UploadPicture').html('<img src="./images/preloader/rotating_globe.gif" width="32" />');
@@ -291,6 +292,8 @@ var Login = {
         if (localStorage.getItem('status') === 'true') {
             $('.menu-title').html(localStorage.getItem('name'))
             $('#userID').html(localStorage.getItem('id'))
+            $('#owner').val(localStorage.getItem('name'));
+            $('#owner-phone').val(localStorage.getItem('telephone'))
         }
         else
             location.href = 'index.html';
