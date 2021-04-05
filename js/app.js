@@ -52,39 +52,36 @@ $('#VerifyAccount').click(() => {
 
     //Sending asynchronous request
     if (authenticate.flag == true) {
-
-        setTimeout(() => {
-            $.ajax({
-                url: 'https://medicareconsultng.com/filmplace/config/auth.php',
-                dataType: authenticate.JSON,
-                type: authenticate.type.POST,
-                beforeSend: () => {
-                    $('#VerifyAccount').html('<img src="./images/preloader/fading_circles.gif" width="32" />')
-                },
-                data: {
-                    verifiedEmail: authenticate.Email.val(),
-                    answer: authenticate.Answer.val(),
-                    securityQuestion: authenticate.Question.val()
-                },
-                success: (asyncRequest) => {
-                    authenticate.Email.val(null);
-                    authenticate.Answer.val(null);
-                    authenticate.Question.val('null');
-                    $('#VerifyAccount').html('Verify');
-                    if (asyncRequest.Status === true) {
-                        $('#small-dialog2').html(authenticate.ChangePassword);
-                        authenticate.verifiedUserId.val(asyncRequest.userId);
-                    }
-                    else {
-                        $('#AccountVerificationStatus').html(asyncRequest.Message);
-                        setTimeout(() => {
-                            $('#AccountVerificationStatus').fadeOut(1000);
-                        }, 5000);
-                        $("#AccountVerificationStatus").val(null).show();
-                    }
+        $.ajax({
+            url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+            dataType: authenticate.JSON,
+            type: authenticate.type.POST,
+            beforeSend: () => {
+                $('#VerifyAccount').html('<img src="./images/preloader/fading_circles.gif" width="32" />')
+            },
+            data: {
+                verifiedEmail: authenticate.Email.val(),
+                answer: authenticate.Answer.val(),
+                securityQuestion: authenticate.Question.val()
+            },
+            success: (asyncRequest) => {
+                authenticate.Email.val(null);
+                authenticate.Answer.val(null);
+                authenticate.Question.val('null');
+                $('#VerifyAccount').html('Verify');
+                if (asyncRequest.Status === true) {
+                    $('#small-dialog2').html(authenticate.ChangePassword);
+                    authenticate.verifiedUserId.val(asyncRequest.userId);
                 }
-            })
-        }, 3000);
+                else {
+                    $('#AccountVerificationStatus').html(asyncRequest.Message);
+                    setTimeout(() => {
+                        $('#AccountVerificationStatus').fadeOut(1000);
+                    }, 5000);
+                    $("#AccountVerificationStatus").val(null).show();
+                }
+            }
+        })
         authenticate.flag = false;
         return authenticate.flag;
     }
@@ -152,8 +149,6 @@ $('#SignUp').click(() => {
     validateInput('validateUser');
     //Sending asynchronous request
     if (authenticate.flag == true) {
-
-        setTimeout(() => {
             $.ajax({
                 url: 'https://medicareconsultng.com/filmplace/config/auth.php',
                 type: authenticate.type.POST,
@@ -187,7 +182,6 @@ $('#SignUp').click(() => {
                     }, 5000)
                 }
             })
-        }, 3000);
         authenticate.flag = false;
         return authenticate.flag;
     }
@@ -247,6 +241,10 @@ $('#Search').click(() => {
         return false;
 })
 
+$('#logout').click(() => {
+    Login.logout();
+})
+
 // Advance search
 
 // $('#advanceSearch').click(function () {
@@ -296,6 +294,14 @@ var Login = {
         }
         else
             location.href = 'index.html';
+    },
+    logout: () => {
+        localStorage.clear();
+        location.href = 'index.html';
+    },
+    activeSession: ()=>{
+        if(localStorage.getItem('status') == 'true')
+            location.href = 'main.html';
     }
 }
 
