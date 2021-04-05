@@ -5,30 +5,40 @@ $('#SignIn').click(() => {
 
     //Sending asynchronous request
     if (authenticate.flag == true) {
-        $('#SignIn').html('<img src="./images/dual-ring-loader.gif" width="32" />');
 
-        setTimeout(() => {
-            $.ajax({
-                url: 'config/auth.php',
-                type: authenticate.requestType[0],
-                dataType: authenticate.dataType,
-                data: {
-                    loginEmail: Login.Email.val(),
-                    loginPassword: Login.Password.val(),
-                },
-                success: (asyncRequest) => {
-                    Login.Email.val(null);
-                    Login.Password.val(null);
-                    $('#loginStatus').html(asyncRequest);
-                    $('#SignIn').html('Sign In');
-                    setTimeout(() => {
-                        $('#loginStatus').fadeOut(1000);
-                    }, 5000);
-
-                    $('#loginStatus').val(null).show();
+        $.ajax({
+            url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+            type: authenticate.type.POST,
+            dataType: authenticate.JSON,
+            beforeSend: () => {
+                $('#SignIn').html('<img src="./images/preloader/fading_circles.gif" width="50" />');
+            },
+            data: {
+                loginEmail: Login.Email.val(),
+                loginPassword: Login.Password.val(),
+            },
+            success: (asyncRequest) => {
+                Login.Email.val(null);
+                Login.Password.val(null);
+                if (asyncRequest.Status === true) {
+                    localStorage.setItem('name', asyncRequest.fullName);
+                    localStorage.setItem('status', asyncRequest.Status);
+                    localStorage.setItem('id', asyncRequest.userId);
+                    localStorage.setItem('telephone', asyncRequest.telephone);
+                    location.href = './main.html';
                 }
-            })
-        }, 3000);
+                else
+                    $('#loginStatus').html(asyncRequest.Message);
+                $('#SignIn').html('Sign In');
+
+                setTimeout(() => {
+                    $('#loginStatus').fadeOut(1000);
+                }, 5000);
+
+                $('#loginStatus').val(null).show();
+            }
+        })
+
         authenticate.flag = false;
         return authenticate.flag;
     }
@@ -42,12 +52,15 @@ $('#VerifyAccount').click(() => {
 
     //Sending asynchronous request
     if (authenticate.flag == true) {
-        $('#VerifyAccount').html('<img src="./images/dual-ring-loader.gif" width="32" />');
+
         setTimeout(() => {
             $.ajax({
-                url: 'config/auth.php',
-                dataType: authenticate.returnType.JSONData,
-                type: authenticate.requestType[0],
+                url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+                dataType: authenticate.JSON,
+                type: authenticate.type.POST,
+                beforeSend: () => {
+                    $('#VerifyAccount').html('<img src="./images/preloader/fading_circles.gif" width="32" />')
+                },
                 data: {
                     verifiedEmail: authenticate.Email.val(),
                     answer: authenticate.Answer.val(),
@@ -63,7 +76,7 @@ $('#VerifyAccount').click(() => {
                         authenticate.verifiedUserId.val(asyncRequest.userId);
                     }
                     else {
-                        $('#AccountVerificationStatus').html(asyncRequest.error);
+                        $('#AccountVerificationStatus').html(asyncRequest.Message);
                         setTimeout(() => {
                             $('#AccountVerificationStatus').fadeOut(1000);
                         }, 5000);
@@ -84,27 +97,29 @@ $('#PasswordReset').click(() => {
 
     //Sending asynchronous request
     if (authenticate.flag == true) {
-        $('#PasswordReset').html('<img src="./images/dual-ring-loader.gif" width="32" />');
 
         if (authenticate.confirmNewPassword.val() === authenticate.Password.val()) {
 
             setTimeout(() => {
                 $.ajax({
-                    url: 'config/auth.php',
-                    dataType: authenticate.returnType.JSONData,
-                    type: authenticate.requestType[0],
+                    url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+                    dataType: authenticate.JSON,
+                    type: authenticate.type.POST,
                     data: {
                         password: authenticate.Password.val(),
                         userId: authenticate.verifiedUserId.val()
                     },
-                    success:  (asyncRequest)=> {
+                    beforeSend: () => {
+                        $('#PasswordReset').html('<img src="./images/preloader/fading_circles.gif" width="32" />');
+                    },
+                    success: (asyncRequest) => {
                         authenticate.Password.val(null);
                         authenticate.confirmNewPassword.val(null);
                         $('#PasswordReset').html('Reset Password');
                         if (asyncRequest.Status == true) {
                             $('#PasswordResetStatus').html(asyncRequest.Message);
                             $('#PasswordReset').html('Redirecting...')
-                            setTimeout( () => {
+                            setTimeout(() => {
                                 $('#PasswordResetStatus').fadeOut(1000);
                                 $('#PasswordResetStatus').val(null).show();
                                 location.href = 'index.html';
@@ -121,7 +136,7 @@ $('#PasswordReset').click(() => {
             authenticate.Password.val(null);
             authenticate.confirmNewPassword.val(null);
             $('#PasswordReset').html('Reset Password');
-            setTimeout( ()=> {
+            setTimeout(() => {
                 $('#PasswordResetStatus').fadeOut(1000);
                 $('#PasswordResetStatus').val(null).show()
             }, 5000)
@@ -133,17 +148,16 @@ $('#PasswordReset').click(() => {
 });
 
 // New User Registration
-$('#SignUp').click( () =>{
+$('#SignUp').click(() => {
     validateInput('validateUser');
     //Sending asynchronous request
     if (authenticate.flag == true) {
-        $('#SignUp').html('<img src="./images/dual-ring-loader.gif" width="32" />');
 
-        setTimeout( ()=> {
+        setTimeout(() => {
             $.ajax({
-                url: 'config/auth.php',
-                type: authenticate.requestType[0],
-                // dataType: authenticate.returnType.JSONData,
+                url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+                type: authenticate.type.POST,
+                dataType: authenticate.JSON,
                 data: {
                     fullName: SignUp.fullName.val(),
                     newUserEmail: SignUp.Email.val(),
@@ -153,7 +167,10 @@ $('#SignUp').click( () =>{
                     password: SignUp.Password.val(),
                     dateOfRegistration: SignUp.getToday()
                 },
-                success:  (asyncRequest) =>{
+                beforeSend: () => {
+                    $('#SignUp').html('<img src="./images/preloader/fading_circles.gif" width="32" />');
+                },
+                success: (asyncRequest) => {
                     SignUp.fullName.val(null);
                     SignUp.Email.val(null);
                     SignUp.telephone.val(null);
@@ -162,11 +179,11 @@ $('#SignUp').click( () =>{
                     SignUp.Password.val(null);
                     $('#SignUp').html('Sign Up');
 
-                    $('#SignUpNotification').html(asyncRequest);
-                    setTimeout( ()=> {
+                    $('#SignUpNotification').html(asyncRequest.Message);
+                    setTimeout(() => {
                         $('#SignUpNotification').fadeOut(1000);
                         $('#SignUpNotification').val(null).show();
-                        location.href = 'main.html';
+                        location.href = 'index.html';
                     }, 5000)
                 }
             })
@@ -180,24 +197,24 @@ $('#SignUp').click( () =>{
  * File Upload algorithm
  */
 
-$('#UploadPicture').click( ()=> {
+$('#UploadPicture').click(() => {
     validateInput('validateUpload');
 
     if (authenticate.flag == true) {
         let formData = new FormData(form);
         $.ajax({
-            url: 'config/upload.php',
-            type: authenticate.requestType[0],
+            url: 'https://medicareconsultng.com/filmplace/config/upload.php',
+            type: authenticate.type.POST,
+            // dataType: authenticate.JSON,
             contentType: false,
             cache: false,
             processData: false,
             data: formData,
-            beforeSend:  () =>{
-                $('#UploadPicture').html('<img src="./images/dual-ring-loader.gif" width="32" />');
-                $('#UploadPicture').html('Upload');
+            beforeSend: () => {
+                $('#UploadPicture').html('<img src="./images/preloader/rotating_globe.gif" width="32" />');
             },
 
-            success:  (asyncRequest) =>{
+            success: (asyncRequest) => {
                 Upload.Address.val(null);
                 Upload.Category.val(null)
                 Upload.Country.val('null')
@@ -205,9 +222,9 @@ $('#UploadPicture').click( ()=> {
                 Upload.City.val(null)
                 Upload.Cost.val(null)
                 Upload.Description.val(null);
-                $("#UploadStatus").html(asyncRequest);
+                $("#UploadStatus").html(asyncRequest.Message);
 
-                setTimeout( () =>{
+                setTimeout(() => {
                     $('#UploadStatus').fadeOut(1000);
                     $('#UploadStatus').val(null).show();
                     location.href = 'main.html';
@@ -221,7 +238,7 @@ $('#UploadPicture').click( ()=> {
 
 // Search algorithm
 
-$('#Search').click( ()=> {
+$('#Search').click(() => {
     validateInput('validateKeyword');
 
     if (authenticate.flag == true)
@@ -272,20 +289,13 @@ function validateInput(inputArgs) {
 var Login = {
     Email: $('#LoginEmail'),
     Password: $('#LoginPassword'),
-    loginSession:  () =>{
-        $.ajax({
-            url: 'config/session.php',
-            type: authenticate.requestType[0],
-            dataType: authenticate.returnType.JSONData,
-            success:  (asyncRequest)=> {
-                if (asyncRequest.loginStatus == true) {
-                    $('.menu-title').html(asyncRequest.fullName)
-                    $('#userID').html(asyncRequest.userID);
-                }
-                else
-                    location.href = 'index.html';
-            }
-        });
+    loginSession: () => {
+        if (localStorage.getItem('status') === 'true') {
+            $('.menu-title').html(localStorage.getItem('name'))
+            $('#userID').html(localStorage.getItem('id'))
+        }
+        else
+            location.href = 'index.html';
     }
 }
 
@@ -299,7 +309,7 @@ var SignUp = {
     /**
      * Get the current date of the client system in YYYY-DD-MM format
      */
-    getToday:  ()=> {
+    getToday: () => {
         // const monthNames = ["January", "February", "March", "April", "May", "June",
         //     "July", "August", "September", "October", "November", "December"];
         let dateObj = new Date();
@@ -315,10 +325,8 @@ var authenticate = {
     flag: false,
     Email: $('#Email'),
     Password: $('#ResetPassword'),
-    returnType: {
-        JSONData: 'JSON',
-    },
-    requestType: ['POST', 'GET'],
+    JSON: 'JSON',
+    type: { POST: 'POST', GET: 'GET' },
     Question: $('#SecurityQuestion'),
     Answer: $('#Answer'),
     ChangePassword: $('#Reset'), //Change Password markup
@@ -344,27 +352,27 @@ var Search = {
     city: $('#city'),
     country: $('#Country'),
     category: $('#category'),
-    match:  ()=> {
+    match: () => {
         $.ajax({
-            url: 'config/search.php',
-            type: authenticate.requestType[0],
+            url: 'https://medicareconsultng.com/filmplace/config/search.php',
+            type: authenticate.type.POST,
             beforeSend: () => {
-                $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
+                $('#previewUploads').html('<img src="images/preloader/house_loading.gif" />')
             },
             data: { keyword: Search.keyword.val() },
-            success:  (asyncRequest)=> {
+            success: (asyncRequest) => {
                 $('#previewUploads').html(asyncRequest);
                 $('#searchTitle').html('Search Result');
             }
         })
         authenticate.flag = false;
     },
-    advance:  () =>{
+    advance: () => {
         $.ajax({
             url: 'config/search.php',
-            type: authenticate.requestType[0],
-            dataType: authenticate.returnType.JSONData,
-            beforeSend:  () =>{
+            type: authenticate.type.POST,
+            dataType: authenticate.JSON,
+            beforeSend: () => {
                 $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
             },
             data: {
@@ -372,7 +380,7 @@ var Search = {
                 category: Search.category.val(),
                 country: Search.country.val(),
             },
-            success:  (asyncRequest) =>{
+            success: (asyncRequest) => {
                 $('#previewUploads').html(asyncRequest);
                 $('#searchTitle').html('Search Result');
                 // $('#resultCount').html(asyncRequest.count);
@@ -385,10 +393,10 @@ var Search = {
 var Preview = {
     latestUploads: () => {
         $.ajax({
-            url: 'config/search.php',
-            type: authenticate.requestType[0],
-            beforeSend:  () =>{
-                $('#previewUploads').html('<img src="images/dual-ring-loader.gif" height="50" />')
+            url: 'https://medicareconsultng.com/filmplace/config/search.php',
+            type: authenticate.type.GET,
+            beforeSend: () => {
+                $('#previewUploads').html('<img src="images/preloader/house_loading.gif" width="25" />')
             },
             data: { login: true },
             success: (asyncRequest) => $('#previewUploads').html(asyncRequest)
@@ -396,8 +404,8 @@ var Preview = {
     },
     myGallery: () => {
         $.ajax({
-            url: 'config/gallery.php',
-            type: authenticate.requestType[0],
+            url: 'https://medicareconsultng.com/filmplace/config/gallery.php',
+            type: authenticate.type.POST,
             data: { login: true },
             success: (asyncRequest) => $('#gallery').html(asyncRequest)
         })
