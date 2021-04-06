@@ -149,39 +149,39 @@ $('#SignUp').click(() => {
     validateInput('validateUser');
     //Sending asynchronous request
     if (authenticate.flag == true) {
-            $.ajax({
-                url: 'https://medicareconsultng.com/filmplace/config/auth.php',
-                type: authenticate.type.POST,
-                dataType: authenticate.JSON,
-                data: {
-                    fullName: SignUp.fullName.val(),
-                    newUserEmail: SignUp.Email.val(),
-                    telephone: SignUp.telephone.val(),
-                    NewSecurityQuestion: SignUp.Question.val(),
-                    answer: SignUp.Answer.val(),
-                    password: SignUp.Password.val(),
-                    dateOfRegistration: SignUp.getToday()
-                },
-                beforeSend: () => {
-                    $('#SignUp').html('<img src="./images/preloader/fading_circles.gif" width="32" />');
-                },
-                success: (asyncRequest) => {
-                    SignUp.fullName.val(null);
-                    SignUp.Email.val(null);
-                    SignUp.telephone.val(null);
-                    SignUp.Question.val('null');
-                    SignUp.Answer.val(null);
-                    SignUp.Password.val(null);
-                    $('#SignUp').html('Sign Up');
+        $.ajax({
+            url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+            type: authenticate.type.POST,
+            dataType: authenticate.JSON,
+            data: {
+                fullName: SignUp.fullName.val(),
+                newUserEmail: SignUp.Email.val(),
+                telephone: SignUp.telephone.val(),
+                NewSecurityQuestion: SignUp.Question.val(),
+                answer: SignUp.Answer.val(),
+                password: SignUp.Password.val(),
+                dateOfRegistration: SignUp.getToday()
+            },
+            beforeSend: () => {
+                $('#SignUp').html('<img src="./images/preloader/fading_circles.gif" width="32" />');
+            },
+            success: (asyncRequest) => {
+                SignUp.fullName.val(null);
+                SignUp.Email.val(null);
+                SignUp.telephone.val(null);
+                SignUp.Question.val('null');
+                SignUp.Answer.val(null);
+                SignUp.Password.val(null);
+                $('#SignUp').html('Sign Up');
 
-                    $('#SignUpNotification').html(asyncRequest.Message);
-                    setTimeout(() => {
-                        $('#SignUpNotification').fadeOut(1000);
-                        $('#SignUpNotification').val(null).show();
-                        location.href = 'index.html';
-                    }, 5000)
-                }
-            })
+                $('#SignUpNotification').html(asyncRequest.Message);
+                setTimeout(() => {
+                    $('#SignUpNotification').fadeOut(1000);
+                    $('#SignUpNotification').val(null).show();
+                    location.href = 'index.html';
+                }, 5000)
+            }
+        })
         authenticate.flag = false;
         return authenticate.flag;
     }
@@ -302,8 +302,8 @@ var Login = {
         localStorage.clear();
         location.href = 'index.html';
     },
-    activeSession: ()=>{
-        if(localStorage.getItem('status') == 'true')
+    activeSession: () => {
+        if (localStorage.getItem('status') == 'true')
             location.href = 'main.html';
     }
 }
@@ -415,7 +415,11 @@ var Preview = {
         $.ajax({
             url: 'https://medicareconsultng.com/filmplace/config/gallery.php',
             type: authenticate.type.POST,
-            data: { login: true },
+            data: {
+                activeUser: localStorage.getItem('status'),
+                owner: localStorage.getItem('name'),
+                telephone: localStorage.getItem('telephone')
+            },
             success: (asyncRequest) => $('#gallery').html(asyncRequest)
         })
     }
