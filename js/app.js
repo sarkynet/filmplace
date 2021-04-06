@@ -206,7 +206,7 @@ $('#UploadPicture').click(() => {
             dataType: authenticate.JSON,
             data: formData,
             beforeSend: () => {
-                $('#UploadPicture').html('<img src="./images/preloader/rotating_globe.gif" width="32" />');
+                $('#UploadPicture').html('<img src="./images/preloader/upload.gif" width="32" />');
             },
 
             success: (asyncRequest) => {
