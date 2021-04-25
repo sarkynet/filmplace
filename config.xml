@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.potterincorporated.filmplace" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.potterincorporated.filmplace" version="2.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Film Place</name>
     <description>
-        Potter Inc
+        Locate and rent your next movie scene to producers so as to easily locate a building or settings for their movie scene shooting.
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Potter Incorporated
+        Potter Inc™️ Team
     </author>
     <content src="index.html" />
     <access origin="*" />
