@@ -7,7 +7,7 @@ $('#SignIn').click(() => {
     if (authenticate.flag == true) {
 
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+            url: 'https://filmplace.potterincorporated.com/config/auth.php',
             type: authenticate.type.POST,
             dataType: authenticate.JSON,
             beforeSend: () => {
@@ -53,7 +53,7 @@ $('#VerifyAccount').click(() => {
     //Sending asynchronous request
     if (authenticate.flag == true) {
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+            url: 'https://filmplace.potterincorporated.com/config/auth.php',
             dataType: authenticate.JSON,
             type: authenticate.type.POST,
             beforeSend: () => {
@@ -99,7 +99,7 @@ $('#PasswordReset').click(() => {
 
             setTimeout(() => {
                 $.ajax({
-                    url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+                    url: 'https://filmplace.potterincorporated.com/config/auth.php',
                     dataType: authenticate.JSON,
                     type: authenticate.type.POST,
                     data: {
@@ -150,7 +150,7 @@ $('#SignUp').click(() => {
     //Sending asynchronous request
     if (authenticate.flag == true) {
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/auth.php',
+            url: 'https://filmplace.potterincorporated.com/config/auth.php',
             type: authenticate.type.POST,
             dataType: authenticate.JSON,
             data: {
@@ -197,7 +197,7 @@ $('#UploadPicture').click(() => {
     if (authenticate.flag == true) {
         let formData = new FormData(form);
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/upload.php',
+            url: 'https://filmplace.potterincorporated.com/config/upload.php',
             type: authenticate.type.POST,
             // dataType: authenticate.JSON,
             contentType: false,
@@ -363,7 +363,7 @@ var Search = {
     category: $('#category'),
     match: () => {
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/search.php',
+            url: 'https://filmplace.potterincorporated.com/config/search.php',
             type: authenticate.type.POST,
             beforeSend: () => {
                 $('#previewUploads').html('<img src="images/preloader/house_loading.gif" />')
@@ -402,7 +402,7 @@ var Search = {
 var Preview = {
     latestUploads: () => {
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/search.php',
+            url: 'https://filmplace.potterincorporated.com/config/search.php',
             type: authenticate.type.GET,
             beforeSend: () => {
                 $('#previewUploads').html('<img src="images/preloader/house_loading.gif" width="25" />')
@@ -413,7 +413,7 @@ var Preview = {
     },
     myGallery: () => {
         $.ajax({
-            url: 'https://medicareconsultng.com/filmplace/config/gallery.php',
+            url: 'https://filmplace.potterincorporated.com/config/gallery.php',
             type: authenticate.type.POST,
             data: {
                 activeUser: localStorage.getItem('status'),
@@ -424,3 +424,6 @@ var Preview = {
         })
     }
 }
+/**
+ * Camera Plugin
+ */
