@@ -3,47 +3,13 @@
 $('#SignIn').click(() => {
     validateInput('validateLogin') // Form Validation
 
-    //Sending asynchronous request
+    //Signing In
     if (authenticate.flag == true) {
-
-        $.ajax({
-            url: 'https://filmplace.potterincorporated.com/config/auth.php',
-            type: authenticate.type.POST,
-            dataType: authenticate.JSON,
-            beforeSend: () => {
-                $('#SignIn').html('<img src="./images/preloader/fading_circles.gif" width="50" />');
-            },
-            data: {
-                loginEmail: Login.Email.val(),
-                loginPassword: Login.Password.val(),
-            },
-            success: (asyncRequest) => {
-                Login.Email.val(null);
-                Login.Password.val(null);
-                if (asyncRequest.Status === true) {
-                    localStorage.setItem('name', asyncRequest.fullName);
-                    localStorage.setItem('status', asyncRequest.Status);
-                    localStorage.setItem('id', asyncRequest.userId);
-                    localStorage.setItem('telephone', asyncRequest.telephone);
-                    location.href = './main.html';
-                }
-                else
-                    $('#loginStatus').html(asyncRequest.Message);
-                $('#SignIn').html('Sign In');
-
-                setTimeout(() => {
-                    $('#loginStatus').fadeOut(1000);
-                }, 5000);
-
-                $('#loginStatus').val(null).show();
-            }
-        })
-
+        Login.signIn();
         authenticate.flag = false;
         return authenticate.flag;
     }
 });
-
 
 
 // Password Verification Asychronous Request 
@@ -305,6 +271,41 @@ var Login = {
     activeSession: () => {
         if (localStorage.getItem('status') == 'true')
             location.href = 'main.html';
+    },
+    signIn: () => {
+        $.ajax({
+            url: 'https://filmplace.potterincorporated.com/config/auth.php',
+            type: authenticate.type.POST,
+            dataType: authenticate.JSON,
+            beforeSend: () => {
+                $('#SignIn').html('<img src="./images/preloader/fading_circles.gif" width="50" />');
+            },
+            data: {
+                loginEmail: Login.Email.val(),
+                loginPassword: Login.Password.val(),
+            },
+            success: (asyncRequest) => {
+                Login.Email.val(null);
+                Login.Password.val(null);
+                if (asyncRequest.Status === true) {
+                    localStorage.setItem('name', asyncRequest.fullName);
+                    localStorage.setItem('status', asyncRequest.Status);
+                    localStorage.setItem('id', asyncRequest.userId);
+                    localStorage.setItem('telephone', asyncRequest.telephone);
+                    location.href = './main.html';
+                }
+                else
+                    $('#loginStatus').html(asyncRequest.Message);
+                $('#SignIn').html('Sign In');
+
+                setTimeout(() => {
+                    $('#loginStatus').fadeOut(1000);
+                }, 5000);
+
+                $('#loginStatus').val(null).show();
+            }
+        })
+
     }
 }
 
@@ -381,9 +382,7 @@ var Search = {
             url: 'config/search.php',
             type: authenticate.type.POST,
             dataType: authenticate.JSON,
-            beforeSend: () => {
-                $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />')
-            },
+            beforeSend: () => $('#previewUploads').html('<img src="images/dual-ring-loader.gif" />'),
             data: {
                 city: Search.city.val(),
                 category: Search.category.val(),
@@ -404,9 +403,7 @@ var Preview = {
         $.ajax({
             url: 'https://filmplace.potterincorporated.com/config/search.php',
             type: authenticate.type.GET,
-            beforeSend: () => {
-                $('#previewUploads').html('<img src="images/preloader/house_loading.gif" width="25" />')
-            },
+            beforeSend: () => $('#previewUploads').html('<img src="images/preloader/house_loading.gif" width="25" />'),
             data: { login: true },
             success: (asyncRequest) => $('#previewUploads').html(asyncRequest)
         })
@@ -424,6 +421,27 @@ var Preview = {
         })
     }
 }
+
 /**
  * Camera Plugin
  */
+// $.getScript('../node_modules/cordova-plugin-camera/types/index.d.ts');
+
+let Photo = {
+    cameraOptions: {
+        quality: '80',
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        mediaType: Camera.MediaType.PICTURE,
+        encodingType: Camera.EncodingType.JPEG,
+        cameraDirection: Camera.Direction.BACK,
+        targetWidth: 320,
+        targetHeight: 200,
+        saveToPhotoAlbum: true
+    },
+    Init: () => $('#camera-btn').click(() => Photo.takePhoto()),
+    takePhoto: () => navigator.camera.getPicture(callbackSuccess(), callbackFailure(), Photo.cameraOptions),
+    callbackSuccess: (imgURI) => $('#imagePreview').text(imgURI),
+    callbackFailure: (failureMsg) => $('#imagePreview').text(failureMsg)
+}
+document.addEventListener('deviceready', Photo.Init())

@@ -26,6 +26,7 @@
 	<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
 	<link rel="stylesheet" href="css/ken-burns.css" type="text/css" media="all" />
+	<link rel="shortcut icon" href="../res/icon/android/icon.ico" type="image/x-icon">
 	<!-- //Custom Theme files -->
 	<!-- js -->
 	<script src="js/jquery-3.4.1.js"></script>
@@ -68,7 +69,8 @@
 					<li><a href="view.html"><i class="glyphicon glyphicon-search"></i> View Uploads </a></li>
 					<!-- <li><a href="#small-dialog2" class="sign-in popup-top-anim"><i
 								class="glyphicon glyphicon-search"></i> Search </a></li> -->
-					<li><a href="javascript:void(0)" id="logout"><i class="glyphicon glyphicon-log-out"></i> Logout </a></li>
+					<li><a href="javascript:void(0)" id="logout"><i class="glyphicon glyphicon-log-out"></i> Logout </a>
+					</li>
 					<div class="clearfix"> </div>
 					<script>
 						$("li a.menu").click(function () {
@@ -414,6 +416,7 @@
 												<li><a href="#">NGN</a></li>
 												<li><a href="#">GBP</a></li>
 												<li><a href="#">AUD</a></li>
+												<li><a href="#">CFR</a></li>
 												<li><a href="#">YEN</a></li>
 											</ul>
 											<script>
@@ -426,15 +429,20 @@
 										<input type="text" name="Cost" class="form w3-input" aria-label="...">
 									</div><!-- /input-group -->
 
-									<div class="styled-input">
+									<!-- <div class="styled-input">
 										<input type="file" name="image" validateUpload id="File" class="w3-input"
 											accept="image/*" />
-									</div>
+									</div> -->
+									<div class="input-group">
+										<input type="file" accept="image/*" name="image" class="form-control" id="File" validateUpload >
+										<div class="input-group-addon btn btn-default" id="camera-btn"><span class="glyphicon glyphicon-camera"></span></div>
+									  </div>
+
 									<input type="hidden" name="owner" id="owner">
 									<input type="hidden" name="owner-phone" id="owner-phone">
-									<!-- <div class="thumbnail">
-										<a href="#"><img id="ImagePreview" src="" alt="" height="150"/></a>
-									</div> -->
+									<div class="">
+										<a href="javascript:void(0)"><img id="ImagePreview" src="" alt="Camera Image Preview"/></a>
+									</div>
 									<button type="button" id="UploadPicture"
 										class="w3-btn-block w3-teal w3-margin-top w3-large">Upload</button>
 								</form>
