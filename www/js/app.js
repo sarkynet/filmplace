@@ -427,21 +427,41 @@ var Preview = {
  */
 // $.getScript('../node_modules/cordova-plugin-camera/types/index.d.ts');
 
-let Photo = {
-    cameraOptions: {
-        quality: '80',
-        destinationType: Camera.DestinationType.FILE_URI,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        mediaType: Camera.MediaType.PICTURE,
-        encodingType: Camera.EncodingType.JPEG,
-        cameraDirection: Camera.Direction.BACK,
-        targetWidth: 320,
-        targetHeight: 200,
-        saveToPhotoAlbum: true
-    },
-    Init: () => $('#camera-btn').click(() => Photo.takePhoto()),
-    takePhoto: () => navigator.camera.getPicture(callbackSuccess(), callbackFailure(), Photo.cameraOptions),
-    callbackSuccess: (imgURI) => $('#imagePreview').text(imgURI),
-    callbackFailure: (failureMsg) => $('#imagePreview').text(failureMsg)
-}
-document.addEventListener('deviceready', Photo.Init())
+// let Photo = {
+//     cameraOptions: {
+//         quality: '80',
+//         destinationType: Camera.DestinationType.FILE_URI,
+//         sourceType: Camera.PictureSourceType.CAMERA,
+//         mediaType: Camera.MediaType.PICTURE,
+//         encodingType: Camera.EncodingType.JPEG,
+//         cameraDirection: Camera.Direction.BACK,
+//         targetWidth: 320,
+//         targetHeight: 200,
+//         saveToPhotoAlbum: true
+//     },
+//     Init: () => $('#camera-btn').click(() => Photo.takePhoto()),
+//     takePhoto: () => navigator.camera.getPicture(callbackSuccess(), callbackFailure(), Photo.cameraOptions),
+//     callbackSuccess: (imgURI) => $('#imagePreview').text(imgURI),
+//     callbackFailure: (failureMsg) => $('#imagePreview').text(failureMsg)
+// }
+// document.addEventListener('deviceready', Photo.Init())
+
+/**
+ * Password input toggle
+ */
+
+ let inputTypPwd = true;
+ $('#password-view').click(() => {
+
+     if (inputTypPwd == true) {
+         $('#LoginPassword').attr('type', 'text');
+         inputTypPwd = false;
+         return false;
+     }
+
+     if (inputTypPwd == false) {
+         $('#LoginPassword').attr('type', 'password')
+         inputTypPwd = true;
+         return false;
+     }
+ })

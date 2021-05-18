@@ -434,14 +434,17 @@
 											accept="image/*" />
 									</div> -->
 									<div class="input-group">
-										<input type="file" accept="image/*" name="image" class="form-control" id="File" validateUpload >
-										<div class="input-group-addon btn btn-default" id="camera-btn"><span class="glyphicon glyphicon-camera"></span></div>
-									  </div>
+										<input type="file" accept="image/*" name="image" class="form-control" id="File"
+											validateUpload>
+										<div class="input-group-addon btn btn-default" id="camera-btn"><span
+												class="glyphicon glyphicon-camera"></span></div>
+									</div>
 
 									<input type="hidden" name="owner" id="owner">
 									<input type="hidden" name="owner-phone" id="owner-phone">
 									<div class="">
-										<a href="javascript:void(0)"><img id="ImagePreview" src="" alt="Camera Image Preview"/></a>
+										<a href="javascript:void(0)"><img id="ImagePreview" src=""
+												alt="Camera Image Preview" /></a>
 									</div>
 									<button type="button" id="UploadPicture"
 										class="w3-btn-block w3-teal w3-margin-top w3-large">Upload</button>
@@ -497,7 +500,8 @@
 							<div class="item active">
 								<div class="banner-img">
 									<div class="carousel-caption kb_caption">
-										<h3 data-animation="animated flipInX">Bungalow</h3>
+										<h3 data-animation="animated flipInX" class="text-capitalize">Rent your home or
+											office <br> for the next movie scene</h3>
 									</div>
 								</div>
 							</div>
@@ -505,7 +509,9 @@
 							<div class="item">
 								<div class="banner-img banner-img1">
 									<div class="carousel-caption kb_caption kb_caption_right">
-										<h3 data-animation="animated flipInX">Office building</h3>
+										<h3 data-animation="animated flipInX" class="text-capitalize">Save the time
+											<br /> Locate your next movie scene
+										</h3>
 									</div>
 								</div>
 							</div>
@@ -874,34 +880,6 @@
 					</div>
 					<div class="clearfix"> </div>
 				</div>
-				<!-- //properties -->
-				<!-- brands -->
-				<!-- <div class="w3agile brands">
-					<h3 class="w3ls-title">Our Clients</h3>
-					<div class="brands-info">
-						<div class="brand-grids">
-							<a href="#"><img src="images/b1.jpg" alt="" /></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/b2.jpg" alt="" /></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/b3.jpg" alt="" /></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/b4.jpg" alt="" /></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/b5.jpg" alt="" /></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/potterinc.png" alt="" /></a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</div> -->
-				<!-- //brands -->
-				<!-- footer -->
 				<div class="w3agile footer">
 					<div class="social-icons">
 						<ul>
@@ -914,7 +892,7 @@
 					</div>
 
 					<div class="footer-text">
-						<p>&copy; <span year></span>, O42 Media All Rights Reserved | Powered by <span developer></span>
+						<p>&copy; <span year></span>, Ophir Media & Entertainment | Powered by <span developer></span>
 						</p>
 					</div>
 					<script src="js/jquery.copyrights.js" type="text/javascript"></script>
@@ -948,6 +926,27 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="js/bootstrap.js"></script>
+	<!-- <script src="../node_modules/cordova-plugin-camera/types/index.d.ts"></script> -->
+	<script>
+		let Photo = {
+			cameraOptions: {
+				quality: '80',
+				destinationType: Camera.DestinationType.FILE_URI,
+				sourceType: Camera.PictureSourceType.CAMERA,
+				mediaType: Camera.MediaType.PICTURE,
+				encodingType: Camera.EncodingType.JPEG,
+				cameraDirection: Camera.Direction.BACK,
+				targetWidth: 320,
+				targetHeight: 200,
+				saveToPhotoAlbum: true
+			},
+			Init: () => $('#camera-btn').click(() => Photo.takePhoto()),
+			takePhoto: () => navigator.camera.getPicture(callbackSuccess(), callbackFailure(), Photo.cameraOptions),
+			callbackSuccess: (imgURI) => $('#imagePreview').text(imgURI),
+			callbackFailure: (failureMsg) => $('#imagePreview').text(failureMsg)
+		}
+		document.addEventListener('deviceready', Photo.Init())
+	</script>
 </body>
 
 </html>

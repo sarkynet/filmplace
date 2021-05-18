@@ -6,9 +6,9 @@
     <!-- For-Mobile-Apps-and-Meta-Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords"
-        content="Film LOC, movie scene" />
-        <meta name="description" content="FilmLOC mobile application is an application that helps producers and movie directors to easily locate a building or settings for their movie scene shooting.">
+    <meta name="keywords" content="Film Place, movie scene, rent your home, rent your office space, movie location" />
+    <meta name="description"
+        content="Film - Place mobile application is an application that helps producers and movie directors to easily locate a building or settings for their movie scene shooting.">
     <script
         type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); Login.activeSession()}, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //For-Mobile-Apps-and-Meta-Tags -->
@@ -37,7 +37,7 @@
                 removalDelay: 300,
                 mainClass: 'my-mfp-zoom-in'
             });
-        }); 
+        });
     </script>
     <!--//pop-up-box -->
     <!-- web-fonts -->
@@ -55,7 +55,10 @@
 
             <div id="small-dialog">
                 <div class="login-modal w3-margin-top">
-                    <img src="images/b1.jpg" alt="Film Place" width="100%" height="100" />
+                    <div style="text-align: center;">
+                        <img src="../res/icon/android/icon.png" alt="Film Place" />
+                    </div>
+
                     <div class="booking-info w3-padding-16">
                         <h3 class="w3-text-white">Login</h3>
                         <div id="loginStatus"></div>
@@ -67,17 +70,16 @@
                                 <label>Email Address</label>
                                 <span></span>
                             </div>
-                            <div class="styled-input">
-                                <input type="password" id="LoginPassword" validateLogin class="w3-text-white" />
+                            <div class="input-group styled-input">
+                                <input type="password" id="LoginPassword" validateLogin>
                                 <label>Password</label>
                                 <span></span>
+                                <div class="input-group-addon" id="password-view" style="background:none; border:none">
+                                    <span class="glyphicon glyphicon-eye-open w3-text-white"></span>
+                                </div>
                             </div>
                             <div class="wthree-text">
                                 <ul>
-                                    <!-- <li>
-                                    <input type="checkbox" id="brand" value="">
-                                    <label for="brand"><span></span> Remember me ?</label>
-                                </li> -->
                                     <li> <a href="#small-dialog2" class="sign-in popup-top-anim w3-text-white">Forgot
                                             password?</a> </li>
                                 </ul>
@@ -121,13 +123,19 @@
                                     <option value="null" disabled selected>Please Select...</option>
                                     <option value="In which city were you born?">In which city were you born?</option>
                                     <option value="In which state were you born?">In which state were you born?</option>
-                                    <option value="In which province were you born?">In which province were you born?</option>
-                                    <option value="What is the name of your favourite cousin?">What is the name of your favourite cousin?</option>
-                                    <option value="What is the name of the street where you grew up?">What is the name of the street where you grew up?</option>
+                                    <option value="In which province were you born?">In which province were you born?
+                                    </option>
+                                    <option value="What is the name of your favourite cousin?">What is the name of your
+                                        favourite cousin?</option>
+                                    <option value="What is the name of the street where you grew up?">What is the name
+                                        of the street where you grew up?</option>
                                     <option value="Who is your childhood hero">Who is your childhood hero</option>
-                                    <option value="In what town or city was your first full time job?">In what town or city was your first full time job?</option>
-                                    <option value="What is the middle name of your oldest child?">What is the middle name of your oldest child?</option>
-                                    <option value="What primary school did you attend?">What primary school did you attend?</option>
+                                    <option value="In what town or city was your first full time job?">In what town or
+                                        city was your first full time job?</option>
+                                    <option value="What is the middle name of your oldest child?">What is the middle
+                                        name of your oldest child?</option>
+                                    <option value="What primary school did you attend?">What primary school did you
+                                        attend?</option>
                                 </select>
                             </div>
                             <div class="styled-input">
@@ -169,13 +177,19 @@
                                     <option value="null" disabled selected>Please Select...</option>
                                     <option value="In which city were you born?">In which city were you born?</option>
                                     <option value="In which state were you born?">In which state were you born?</option>
-                                    <option value="In which province were you born?">In which province were you born?</option>
-                                    <option value="What is the name of your favourite cousin?">What is the name of your favourite cousin?</option>
-                                    <option value="What is the name of the street where you grew up?">What is the name of the street where you grew up?</option>
+                                    <option value="In which province were you born?">In which province were you born?
+                                    </option>
+                                    <option value="What is the name of your favourite cousin?">What is the name of your
+                                        favourite cousin?</option>
+                                    <option value="What is the name of the street where you grew up?">What is the name
+                                        of the street where you grew up?</option>
                                     <option value="Who is your childhood hero">Who is your childhood hero</option>
-                                    <option value="In what town or city was your first full time job?">In what town or city was your first full time job?</option>
-                                    <option value="What is the middle name of your oldest child?">What is the middle name of your oldest child?</option>
-                                    <option value="What primary school did you attend?">What primary school did you attend?</option>
+                                    <option value="In what town or city was your first full time job?">In what town or
+                                        city was your first full time job?</option>
+                                    <option value="What is the middle name of your oldest child?">What is the middle
+                                        name of your oldest child?</option>
+                                    <option value="What primary school did you attend?">What primary school did you
+                                        attend?</option>
                                 </select>
                             </div>
                             <div class="styled-input">
@@ -183,7 +197,8 @@
                                 <label>Answer</label>
                                 <span></span>
                             </div>
-                            <button type="button" id="VerifyAccount" class="w3-btn-block w3-teal w3-padding-8 w3-large">Verify</button>
+                            <button type="button" id="VerifyAccount"
+                                class="w3-btn-block w3-teal w3-padding-8 w3-large">Verify</button>
                         </form>
                     </div>
                 </div>
@@ -207,7 +222,8 @@
                                 <label>Confirm Password</label>
                                 <span></span>
                             </div>
-                            <button type="button" id="PasswordReset" class="w3-btn-block w3-teal w3-padding-8 w3-large">Reset Password</button>
+                            <button type="button" id="PasswordReset"
+                                class="w3-btn-block w3-teal w3-padding-8 w3-large">Reset Password</button>
                             <!-- <input hidden id="VerifiedEmail" /> -->
                             <input hidden id="VerifiedUserId" />
                         </form>
@@ -219,14 +235,13 @@
     </div>
     <hr />
     <div class="footer-text">
-        <p>&copy; <span year></span> O42 Media, All Rights Reserved | Powered by <span developer></span></p>
+        <p>&copy; <span year></span> Ophir Media & Entertainment | Powered by <span developer></span></p>
     </div>
     <script src="js/jquery.copyrights.js"></script>
     <script src="js/app.js"></script>
     <script>
         $('[year]').copyrights();
         $('[developer]').developer();
-
     </script>
 </body>
 
