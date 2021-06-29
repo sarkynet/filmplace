@@ -11,8 +11,8 @@
 	
 		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0); 
-			// Login.loginSession();
-			// Preview.latestUploads();
+			Login.loginSession();
+			Preview.latestUploads();
 		}, false); 
 	
 			function hideURLbar(){ window.scrollTo(0,1); }
@@ -65,7 +65,7 @@
 					<li><a href="view.html"><i class="glyphicon glyphicon-search"></i> View Uploads </a></li>
 					<!-- <li><a href="#small-dialog2" class="sign-in popup-top-anim"><i
 								class="glyphicon glyphicon-search"></i> Search </a></li> -->
-					<li><a href="config/logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout </a></li>
+					<li><a href="javascript:void(0)" id="logout"><i class="glyphicon glyphicon-log-out"></i> Logout </a></li>
 					<div class="clearfix"> </div>
 					<script>
 						$("li a.menu").click(function () {
@@ -75,7 +75,7 @@
 						});
 					</script>
 					</li>
-					<li><a href="contact.html"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li>
+					<!-- <li><a href="contact.html"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li> -->
 					<span hidden id="userID"></span>
 				</ul>
 			</nav>
@@ -87,7 +87,7 @@
 					<button class="menu-button" id="open-button">O</button>
 				</div>
 				<div class="logo">
-					<h2><a href="main.html">FL</a></h2>
+					<h2><a href="main.html">Film Place</a></h2>
 				</div>
 				<div class="login">
 					<a href="#small-dialog" class="sign-in popup-top-anim"><span
@@ -427,6 +427,8 @@
 										<input type="file" name="image" validateUpload id="File" class="w3-input"
 											accept="image/*" />
 									</div>
+									<input type="hidden" name="owner" id="owner">
+									<input type="hidden" name="owner-phone" id="owner-phone">
 									<!-- <div class="thumbnail">
 										<a href="#"><img id="ImagePreview" src="" alt="" height="150"/></a>
 									</div> -->
