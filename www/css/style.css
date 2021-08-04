@@ -651,8 +651,6 @@ h3.w3ls-title {
 }
 .properties-bottom {
     margin-top: 1.6em;
-    float: left;
-    width: 33.33%;
     padding: 0 .5em;
 }
 .properties-bottom img {
@@ -1891,6 +1889,12 @@ h2.typoh2{
 }
 .properties-w3lsrow .w3ls-text h6 {
     margin: 0 0 0 4px; 
+}
+.properties-bottom{
+    display: inline;
+}
+.properties-img{
+    height: 400px;
 }
 .latest-w3lsrow {
     margin-top: 3em;
