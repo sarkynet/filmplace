@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.potterincorporated.filmplace" version="2.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.potterincorporated.filmplace" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Film Place</name>
     <description>
         Locate and rent your next movie scene to producers so as to easily locate a building or settings for their movie scene shooting.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="info@potterincorporated.com" href="http://cordova.io">
         Potter Inc™️ Team
     </author>
     <content src="index.html" />
@@ -15,12 +15,30 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+    <!-- splashscreen -->
+    <platform name="android">
+    <!-- portrait orientation -->
+        <splash src="res/icon/android/icon-48-mdpi.png" density="port-mdpi"/>
+        <splash src="res/icon/android/icon-72-hdpi.png" density="port-hdpi"/>
+        <splash src="res/icon/android/icon-96-xhdpi.png" density="port-xhdpi"/>
+        
+        <!-- landscape orientation -->
+        <<splash src="res/icon/android/icon-48-mdpi.png" density="land-mdpi"/>
+        <splash src="res/icon/android/icon-72-hdpi.png" density="land-hdpi"/>
+        <splash src="res/icon/android/icon-96-xhdpi.png" density="land-xhdpi"/>
+    </platform>
+    <!-- // endof splashscreen -->
+
+    <!-- app icon -->
     <platform name="android">
         <allow-intent href="market:*" />
         <icon src="res/icon/android/icon-48-mdpi.png" density="mdpi"/>
         <icon src="res/icon/android/icon-72-hdpi.png" density="hdpi"/>
         <icon src="res/icon/android/icon-96-xhdpi.png" density="xhdpi"/>
     </platform>
+    <!-- //endapp icon -->
+
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
