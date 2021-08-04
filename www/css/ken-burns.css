@@ -80,6 +80,8 @@
     background: #fff;
     padding: 0.5em 1em;
     font-size: 1.5em;
+    border-radius: 2px;
+    opacity: .8;
     display: inline-block; 
 }
 
